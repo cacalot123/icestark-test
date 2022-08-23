@@ -4,6 +4,11 @@ import htmlPlugin from 'vite-plugin-index-html';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 3002,
+    // 是否开启 https
+    https: false,
+  },
   plugins: [vue(), htmlPlugin({
     input: './src/main.ts',
     preserveEntrySignatures: 'exports-only',
