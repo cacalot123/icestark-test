@@ -32,4 +32,22 @@ const change1 = () => {
   state.numSon += state.numSon;
   num.value += num.value;
 };
+
+const p = new Proxy({}, {
+    set(target, propKey, value) {
+      console.log(target, propKey, value)
+        if (propKey === 'name') {
+            throw new TypeError('name属性不允许修改');
+        } 
+        // 不是 name 属性，直接保存
+        target[propKey] = value;
+        return true
+    }
+});
+
+// p.name = 'proxy';
+// TypeError: name属性不允许修改
+p.a = 111;
+console.log(p.a); // 111
+
 </script>
